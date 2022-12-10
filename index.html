@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings management</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1 id="title">Savings management 💰</h1>
+    <section>
+        <div >
+            <h2 id="subtitle">Balance</h2>
+            <div id="balance">0.00 €</div>
+        </div>
+        <article class="movement" id="incomeTitle">Income
+            <div id="income">0.00 €</div>
+        </article>
+        <article class="movement" id="expenseTitle">Expense
+            <div id="expense">0.00 €</div>
+        </article>
+    </section>
+    <section>
+        <h2 id="subtitle">Movements</h2>
+        <ul id="movementsList">
+
+        </ul>
+    </section>
+    <form id="addNewMovement" novalidate>
+        <h2 id="subtitle">Add new movement</h2>
+        <div id="inputCell">
+            <label for="concept">Concept</label>
+            <input id = "movementConcept" name="concept" placeholder="Enter new concept" required type="text" >
+        </div>
+        <div id="inputCell">
+            <label for="amount">Amount <br> (Negative = expense, positive = income)</label>
+            <input id="movementAmount" name="amount" placeholder ="Enter amount" required type="number">
+        </div>
+        <button type="submit">Add new movement</button>
+    </form>
+    <script src="./index.js"></script>
+</body>
+</html>
