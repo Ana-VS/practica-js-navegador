@@ -23,7 +23,7 @@ addNewMovement.addEventListener ("submit", (event) =>{
     }
     movement.id = id
     movsList.push (movement);
-
+    //id += 1
 
     drawMovements()
     addValues()  
@@ -49,16 +49,12 @@ function drawMovements () {
 }
 
 function removeElement (id) {
-    for (let index = 0; index < movsList.length; index++) {
-        if (movsList[index].id === id) {
-            const movToRemove = document.getElementById(id);
-            movToRemove.remove();
-            movsList.splice (movsList[index],1);
-        }
+        movsList = movsList.filter (mov => id !== mov.id)
+        
         drawMovements()
         addValues() 
     }
-}
+
 
 function addValues () {
     let totalIncome = sumIncome(movsList);
