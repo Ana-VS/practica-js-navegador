@@ -4,8 +4,15 @@ const balance = document.querySelector ("#balance")
 const income = document.querySelector ("#income")
 const expense = document.querySelector("#expense")
 let id = 0;
-let movsList = [];
+let movsList = [] ;
 
+let savedMovements = JSON.parse(localStorage.getItem("movements"))
+
+if (savedMovements !== []) {
+    movsList = savedMovements;
+    drawMovements();
+    addValues();
+}
 
 addNewMovement.addEventListener ("submit", (event) =>{
     event.preventDefault();
@@ -23,10 +30,11 @@ addNewMovement.addEventListener ("submit", (event) =>{
     }
     movement.id = id
     movsList.push (movement);
-    //id += 1
+   
 
     drawMovements()
     addValues()  
+    localStorage.setItem("movements", JSON.stringify(movsList))
        
     movementConcept.value = "";
     movementAmount.value = "";
@@ -36,12 +44,13 @@ addNewMovement.addEventListener ("submit", (event) =>{
 );
 
 
+
         
 
 function drawMovements () {
     movementsList.innerHTML =""
     movsList.forEach(movement => {
-        let movementContent = `<li id="${movement.id}">${movement.concept}: ${movement.amount} €<button class ="remove" onclick="removeElement(${movement.id})">X</button></li> `
+        let movementContent = `<li class="list" id="${movement.id}">${movement.concept}: ${movement.amount} €<button class ="remove" onclick="removeElement(${movement.id})">X</button></li> `
         const newMovement = document.createElement("li");
         newMovement.innerHTML = movementContent;
         movementsList.appendChild(newMovement);
@@ -50,7 +59,7 @@ function drawMovements () {
 
 function removeElement (id) {
         movsList = movsList.filter (mov => id !== mov.id)
-        
+        localStorage.setItem("movements", JSON.stringify(movsList))
         drawMovements()
         addValues() 
     }
@@ -88,3 +97,4 @@ function sumExpense (elements) {
 function calculateBalance (income, expense) {
     return income - Math.abs(expense)
 }
+
